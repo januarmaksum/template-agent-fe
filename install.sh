@@ -9,9 +9,47 @@ set -e
 
 # Opsional: Bisa di-override via env variable
 REPO_URL=${1:-"https://github.com/januarmaksum/template-agent-fe.git"}
+FORCE_YES=false
+
+# Cek apakah ada flag -y
+if [[ "$*" == *"-y"* ]]; then
+  FORCE_YES=true
+fi
+
 TEMP_DIR=$(mktemp -d)
 
 echo "🚀 Memulai instalasi AI Agent Skills dari: $REPO_URL"
+
+# Helper function untuk copy dengan proteksi
+copy_with_protection() {
+  local src=$1
+  local dest=$2
+
+  if [ -e "$dest" ] && [ "$FORCE_YES" = false ]; then
+    echo -n "⚠️  File $dest sudah ada. [o]verwrite, [b]ackup, [s]kip? (o/b/s): "
+    read -r choice < /dev/tty
+    case "$choice" in
+      o|O ) 
+        cp -r "$src" "$dest"
+        echo "✅ Timpa $dest"
+        ;;
+      b|B ) 
+        mv "$dest" "$dest.bak"
+        cp -r "$src" "$dest"
+        echo "📦 Backup lama ke $dest.bak & pasang baru"
+        ;;
+      s|S ) 
+        echo "⏭️  Skip $dest"
+        ;;
+      * ) 
+        echo "⏭️  Pilihan tidak valid, skip $dest"
+        ;;
+    esac
+  else
+    cp -r "$src" "$dest"
+    echo "🆕 Pasang $dest"
+  fi
+}
 
 # 1. Clone secara minimal ke folder temp
 echo "⏳ Mengunduh template..."
@@ -28,19 +66,17 @@ TARGETS=(
   ".clinerules"
 )
 
-# 3. Kopi file ke direktori saat ini
+# 3. Proses setiap item
 for item in "${TARGETS[@]}"; do
   if [ -e "$TEMP_DIR/$item" ]; then
-    echo "📦 Memasang $item..."
-    cp -r "$TEMP_DIR/$item" .
+    copy_with_protection "$TEMP_DIR/$item" "$item"
   fi
 done
 
-# 4. Khusus untuk Copilot (karena foldernya bisa jadi sudah ada)
+# 4. Khusus untuk Copilot
 if [ -f "$TEMP_DIR/.github/copilot-instructions.md" ]; then
-  echo "📦 Memasang Copilot instructions..."
   mkdir -p .github
-  cp "$TEMP_DIR/.github/copilot-instructions.md" .github/
+  copy_with_protection "$TEMP_DIR/.github/copilot-instructions.md" ".github/copilot-instructions.md"
 fi
 
 # 5. Cleanup

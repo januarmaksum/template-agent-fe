@@ -28,6 +28,15 @@ Buka terminal di root project Anda, lalu jalankan:
 curl -sSL https://raw.githubusercontent.com/januarmaksum/template-agent-fe/main/install.sh | bash
 ```
 
+### 🛡️ Fitur Keamanan (Installer)
+Script installer kami tidak akan langsung menghapus file Anda. Jika file seperti `AGENT.md` sudah ada, Anda akan ditanya:
+- **Overwrite (o)**: Ganti file lama dengan versi template.
+- **Backup (b)**: Simpan file lama sebagai `.bak` dan pasang yang baru.
+- **Skip (s)**: Biarkan file lama Anda tidak tersentuh.
+
+> 💡 **Tip**: Jalankan dengan flag `-y` (misal: `bash install.sh -y`) untuk otomatis menimpa semua file tanpa bertanya.
+
+
 ---
 
 ## 🛠 Struktur Direktori
