@@ -32,6 +32,7 @@ Pick the right skill based on what the user asks:
 | User Asks For | Read This Skill |
 |---|---|
 | "Implement this PRD / spec / ERD / API doc" | `.ai/skills/spec-interpreter.md` |
+| "Write code / review / optimize / best practices" | `.ai/skills/tech-stack-best-practices.md` |
 | "Build this page / component / UI" | `.ai/skills/frontend-design.md` |
 | "Convert this design / screenshot to code" | `.ai/skills/frontend-design.md` |
 | "Build a complex app with many components" | `.ai/skills/web-artifacts-builder.md` |
