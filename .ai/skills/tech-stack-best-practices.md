@@ -11,7 +11,8 @@ This skill acts as a dynamic router to ensure you apply the correct best practic
 Before writing, designing, or refactoring code, always check the project's dependency manifest (e.g., `package.json` for frontend/Node projects).
 
 Look for key dependencies to determine the core technology:
-- `react`, `next` ➔ **React / Next.js**
+- `next` ➔ **Next.js** (includes React)
+- `react` (without `next`) ➔ **React (standalone)**
 - `vue`, `nuxt` ➔ **Vue.js**
 - `svelte` ➔ **Svelte**
 - `angular` ➔ **Angular**
@@ -21,7 +22,18 @@ Once you have identified the framework, load the specific best practices skill f
 
 ### Pre-configured Framework Skills:
 
-- **React & Next.js** (dependencies: `react`, `react-dom`, `next`):
+- **Next.js** (dependency: `next` in package.json):
+  - **PRIMARY**: Read docs from `node_modules/next/dist/docs/` — this is the version-matched, official documentation bundled with Next.js. Your training data may be outdated. These docs are the **source of truth**.
+    - Structure: `node_modules/next/dist/docs/01-app/` (App Router), `02-pages/` (Pages Router), `03-architecture/`
+    - For routing questions → read `01-app/01-getting-started/`
+    - For API reference → read `01-app/03-api-reference/`
+    - For guides (caching, auth, SSR, etc.) → read `01-app/02-guides/`
+  - **ALSO LOAD**: `.ai/skills/react-best-practices/SKILL.md` — 70 React performance rules (still apply within Next.js)
+  - **ALSO LOAD**: `.ai/skills/composition-patterns/SKILL.md` (component abstractions)
+  - **ALSO LOAD**: `.ai/skills/react-view-transitions/SKILL.md` (animations)
+  - **PRIORITY**: If Next.js bundled docs conflict with any skill file, the bundled docs always win.
+
+- **React (standalone)** (dependencies: `react`, `react-dom` WITHOUT `next`):
   - Read `.ai/skills/react-best-practices/SKILL.md` — 70 rules across 8 categories (waterfalls, bundle, server, client, re-render, rendering, JS, advanced)
   - Also load: `.ai/skills/composition-patterns/SKILL.md` (component abstraction patterns)
   - Also load: `.ai/skills/react-view-transitions/SKILL.md` (view transition animations)
@@ -46,4 +58,7 @@ To add best practices for a new framework:
 2. Add a `SKILL.md` with the framework's rules and patterns
 3. This router will automatically detect it from `package.json`
 
+Some frameworks bundle their own docs (like Next.js at `node_modules/next/dist/docs/`). When available, always prefer bundled docs over static skill files — they are version-matched to the project.
+
 No changes to `AGENT.md` or this file needed — detection is automatic.
+
