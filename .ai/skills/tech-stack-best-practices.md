@@ -21,13 +21,29 @@ Once you have identified the framework, load the specific best practices skill f
 
 ### Pre-configured Framework Skills:
 
-- **React & Next.js**: 
-  - Read `.ai/skills/react-best-practices/SKILL.md` (and refer to its sub-rules when making specific frontend updates).
-  - Also consider: `.ai/skills/composition-patterns/SKILL.md` (Component abstractions) and `.ai/skills/react-view-transitions/SKILL.md` (Animations).
-  
-- **Vue.js**, **Svelte**, etc.: 
-  - Look for `.ai/skills/{framework}-best-practices.md` or `.ai/skills/{framework}-best-practices/SKILL.md`.
-  - If a specific file does not exist yet, apply general industry best practices for that framework and politely inform the user that they can add a framework-specific skill file to the `.ai/skills` directory, which this dynamic router will automatically find.
+- **React & Next.js** (dependencies: `react`, `react-dom`, `next`):
+  - Read `.ai/skills/react-best-practices/SKILL.md` — 70 rules across 8 categories (waterfalls, bundle, server, client, re-render, rendering, JS, advanced)
+  - Also load: `.ai/skills/composition-patterns/SKILL.md` (component abstraction patterns)
+  - Also load: `.ai/skills/react-view-transitions/SKILL.md` (view transition animations)
+
+- **Vue.js & Nuxt** (dependencies: `vue`, `nuxt`):
+  - Read `.ai/skills/vue-best-practices/SKILL.md` — core Composition API + `<script setup>` + TypeScript patterns
+  - Also load based on project dependencies:
+    - `pinia` in deps → `.ai/skills/vue-pinia-best-practices/SKILL.md` (state management)
+    - `vue-router` in deps → `.ai/skills/vue-router-best-practices/SKILL.md` (routing patterns)
+    - Testing task → `.ai/skills/vue-testing-best-practices/SKILL.md` (Vitest + Vue Test Utils)
+    - Debugging task → `.ai/skills/vue-debug-guides/SKILL.md` (troubleshooting & devtools)
+    - Composable design → `.ai/skills/create-adaptable-composable/SKILL.md` (reusable composable patterns)
+
+- **Other Frameworks** (Svelte, Angular, etc.):
+  - Look for `.ai/skills/{framework}-best-practices/SKILL.md`
+  - If no skill file exists, apply general industry best practices and inform the user they can add one
 
 ## Extensibility
-If you decide to migrate or use a new framework in the future (for instance, switching to Vue.js), you only need to drop the equivalent Vue best practice guidelines into `.ai/skills/vue-best-practices.md`. This dynamic router ensures the Agent adjusts its architecture and optimization recommendations automatically based on what `package.json` dictates.
+
+To add best practices for a new framework:
+1. Create a folder `.ai/skills/{framework}-best-practices/`
+2. Add a `SKILL.md` with the framework's rules and patterns
+3. This router will automatically detect it from `package.json`
+
+No changes to `AGENT.md` or this file needed — detection is automatic.
