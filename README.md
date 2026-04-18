@@ -1,52 +1,55 @@
 # Universal AI Agent Template 🚀
 
-Repositori ini adalah template standar untuk membangun ekosistem AI Agent yang kompatibel dengan berbagai editor (Cursor, Trae, Windsurf, Cline, dll) dan framework (React/Next.js, Vue/Nuxt, dll).
+A standardized, multi-editor, and framework-agnostic environment designed to empower AI coding agents (Cursor, Trae, Windsurf, Cline, and more) with project-specific intelligence and up-to-date documentation.
 
-## ✨ Fitur Utama
-- **Universal Configuration**: Satu file `AGENT.md` untuk semua instruksi.
-- **Dynamic Skill Routing**: AI secara otomatis memilih *best practices* berdasarkan `package.json` (Next.js, React, atau Vue).
-- **Built-in Docs Support**: Integrasi otomatis dengan dokumentasi Next.js terbaru di `node_modules`.
-- **Cross-Editor Compatibility**: Support otomatis untuk:
-  - Cursor (`.cursorrules`)
-  - Trae (`.trae/project_rules.md`)
-  - Windsurf (`.windsurfrules`)
-  - Cline (`.clinerules`)
-  - VS Code Copilot (`.github/copilot-instructions.md`)
-  - Claude CLI (`CLAUDE.md`)
+## ✨ Key Features
+
+- **Universal Configuration**: Centralized `AGENT.md` serves as the single source of truth for agent instructions across all supported IDEs.
+- **Dynamic Skill Routing**: Intelligent routing that automatically selects the best practices based on your project's `package.json` (supporting Next.js, React, and Vue/Nuxt).
+- **Native Next.js Support**: Seamless integration with bundled, version-matched documentation located in `node_modules/next/dist/docs/`, bypassing outdated AI training data.
+- **Cross-Editor Compatibility**: Out-of-the-box support for:
+  - **Cursor** (`.cursorrules`)
+  - **Trae** (`.trae/project_rules.md`)
+  - **Windsurf** (`.windsurfrules`)
+  - **Cline** (`.clinerules`)
+  - **VS Code Copilot** (`.github/copilot-instructions.md`)
+  - **Claude CLI** (`CLAUDE.md`)
+- **Safety-First Installer**: Advanced installation script with built-in file protection (backup/overwrite/skip logic).
 
 ---
 
-## 🚀 Cara Menggunakan di Repo Baru
+## 🚀 Getting Started
 
-### Opsi A: Gunakan sebagai Template (Terbaik untuk Project Baru)
-Klik tombol **"Use this template"** di GitHub saat membuat repositori baru.
+### Option A: Use as a Template (Recommended for New Projects)
+Click the **"Use this template"** button on GitHub to initialize a new repository with this pre-configured AI environment.
 
-### Opsi B: Install di Repo yang Sudah Ada (One-Liner)
-Buka terminal di root project Anda, lalu jalankan:
+### Option B: Install into an Existing Repository
+Run the following one-liner in your terminal at the root of your project:
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/januarmaksum/template-agent-fe/main/install.sh | bash
 ```
 
-### 🛡️ Fitur Keamanan (Installer)
-Script installer kami tidak akan langsung menghapus file Anda. Jika file seperti `AGENT.md` sudah ada, Anda akan ditanya:
-- **Overwrite (o)**: Ganti file lama dengan versi template.
-- **Backup (b)**: Simpan file lama sebagai `.bak` dan pasang yang baru.
-- **Skip (s)**: Biarkan file lama Anda tidak tersentuh.
+---
 
-> 💡 **Tip**: Jalankan dengan flag `-y` (misal: `bash install.sh -y`) untuk otomatis menimpa semua file tanpa bertanya.
+## 🛡️ Installer Safety Features
+The installer is designed to be non-destructive. If it detects existing configuration files (e.g., `AGENT.md`), it will prompt you for action:
+- **[o] Overwrite**: Replace the existing file with the template version.
+- **[b] Backup**: Rename the current file to `.bak` and install the new version.
+- **[s] Skip**: Keep your current file untouched.
 
+> 💡 **Tip**: Use the `-y` flag (e.g., `bash install.sh -y`) to automatically overwrite all files without prompts.
 
 ---
 
-## 🛠 Struktur Direktori
-- `AGENT.md`: *Single source of truth* instruksi agen.
-- `.ai/skills/`: Koleksi keahlian spesifik (Logic, UI, Tech Stack, Testing).
-- `install.sh`: Script otomatisasi untuk instalasi lintas project.
+## 🛠 Directory Structure
+- `AGENT.md`: The central "brain" containing identity, tech stack, and skill routing rules.
+- `.ai/skills/`: A modular ecosystem of technical expertise (Design, Core Logic, Testing, Frameworks).
+- `install.sh`: Automation script for cross-project deployment.
 
 ---
 
-## ✍️ Kustomisasi
-Setelah instalasi, Anda cukup mengedit `AGENT.md` pada bagian `Tech Stack` untuk menyesuaikan dengan project Anda. AI akan secara otomatis menyesuaikan "otak"-nya sesuai dengan framework yang Anda gunakan.
+## ✍️ Customization
+Once installed, simply update the `Tech Stack` section in `AGENT.md`. The AI will automatically adjust its behavior and resource lookup based on your specific framework and dependencies.
 
-Created with ❤️ for smarter coding.
+Created with ❤️ for a more intelligent development workflow.
